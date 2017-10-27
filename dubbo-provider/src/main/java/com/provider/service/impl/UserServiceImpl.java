@@ -4,6 +4,9 @@ import com.common.api.entity.User;
 import com.common.api.service.UserService;
 import com.provider.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * Created by zhaojw
@@ -12,9 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author: zhaojw
  */
+@Service
 public class UserServiceImpl implements UserService {
 
-     @Autowired
+     @Resource
      private UserMapper userMapper;
 
     /**

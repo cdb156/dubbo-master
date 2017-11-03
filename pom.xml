@@ -32,12 +32,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--dubbo依赖 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>dubbo</artifactId>
                 <version>${dubbo.version}</version>
             </dependency>
-
             <!-- servlet begin -->
             <dependency>
                 <groupId>javax.validation</groupId>
@@ -210,8 +210,9 @@
                 <version>${aspectj}</version>
             </dependency>
         </dependencies>
-
     </dependencyManagement>
+
+    <!--本地仓库 -->
     <repositories>
         <repository>
             <id>aliyun-repo</id>

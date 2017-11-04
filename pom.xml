@@ -12,22 +12,25 @@
     <properties>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <spring-version>4.3.5.RELEASE</spring-version>
+        <spring-version>4.3.12.RELEASE</spring-version>
         <log4j-version>1.2.17</log4j-version>
         <dom4j.version>1.6.1</dom4j.version>
-        <mybatis-version>3.3.1</mybatis-version>
-        <mybatis-spring.version>1.2.4</mybatis-spring.version>
+        <mybatis-version>3.4.5</mybatis-version>
+        <mybatis-spring.version>1.3.0</mybatis-spring.version>
         <junit.version>4.12</junit.version>
         <slf4j>1.7.12</slf4j>
-        <dubbo.version>2.8.4</dubbo.version>
-        <zookeeper_version>3.4.6</zookeeper_version>
-        <zkclient_version>0.1</zkclient_version>
+        <dubbo.version>2.5.6</dubbo.version>
+        <zookeeper_version>3.4.7</zookeeper_version>
+        <zkclient_version>0.10</zkclient_version>
         <httpClient.version>4.4</httpClient.version>
         <validation_version>1.0.0.GA</validation_version>
-        <slf4j_version>1.6.2</slf4j_version>
+        <slf4j_version>1.7.25</slf4j_version>
         <log4j_version>1.2.16</log4j_version>
         <tk_mybatis_mapper.version>3.3.6</tk_mybatis_mapper.version>
         <aspectj>1.8.12</aspectj>
+        <druid_version>1.1.5</druid_version>
+        <mysql_version>5.1.44</mysql_version>
+        <jackson_version>2.9.2</jackson_version>
     </properties>
 
     <dependencyManagement>
@@ -83,14 +86,14 @@
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
-                <version>1.0.16</version>
+                <version>${druid_version}</version>
             </dependency>
             <!-- apache commons end -->
             <!-- dataSource begin -->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>5.1.20</version>
+                <version>${mysql_version}</version>
             </dependency>
             <!-- dataSource end -->
             <!-- log module   begin -->
@@ -198,6 +201,12 @@
                 <groupId>org.apache.zookeeper</groupId>
                 <artifactId>zookeeper</artifactId>
                 <version>${zookeeper_version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>${zkclient_version}</version>
             </dependency>
             <dependency>
                 <groupId>org.aspectj</groupId>
@@ -209,89 +218,24 @@
                 <artifactId>aspectjweaver</artifactId>
                 <version>${aspectj}</version>
             </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson_version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
-    <!--本地仓库 -->
-    <repositories>
-        <repository>
-            <id>aliyun-repo</id>
-            <name>apache Repository</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
-        </repository>
-        <repository>
-            <id>java-repo</id>
-            <name>java Repository</name>
-            <url>http://download.java.net/maven/2/</url>
-        </repository>
-        <repository>
-            <id>springsource-repo</id>
-            <name>SpringSource Repository</name>
-            <url>http://repo.spring.io/release/</url>
-        </repository>
-        <repository>
-            <id>springsource-repo-snapshot</id>
-            <name>SpringSource Repository</name>
-            <url>http://repo.spring.io/snapshot/</url>
-        </repository>
-        <repository>
-            <id>cloudhopper</id>
-            <name>Repository for Cloudhopper</name>
-            <url>http://maven.cloudhopper.com/repos/third-party/</url>
-        </repository>
-        <repository>
-            <id>jboss-repo-releases</id>
-            <name>Jboss Repository</name>
-            <url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
-        </repository>
-        <repository>
-            <id>central</id>
-            <name>Maven Repository Switchboard</name>
-            <layout>default</layout>
-            <url>http://repo.maven.apache.org/maven2</url>
-        </repository>
-        <repository>
-            <id>maven-repo1</id>
-            <name>maven-repo1</name>
-            <layout>default</layout>
-            <url>http://repo1.maven.org/maven2/</url>
-        </repository>
-        <repository>
-            <id>sourceforge-releases</id>
-            <name>Sourceforge Releases</name>
-            <url>https://oss.sonatype.org/content/repositories/sourceforge-releases</url>
-        </repository>
-        <repository>
-            <id>fangmaster.thirdparty</id>
-            <url>http://192.168.1.117:9095/nexus/content/repositories/thirdparty/</url>
-        </repository>
-        <repository>
-            <id>fangmaster.releases</id>
-            <url>http://192.168.1.117:9095/nexus/content/repositories/releases/</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>central</id>
-            <url>http://repo1.maven.org/maven2</url>
-        </pluginRepository>
-        <pluginRepository>
-            <id>fangmaster.releases</id>
-            <url>http://192.168.1.117:9095/nexus/content/repositories/releases/</url>
-        </pluginRepository>
-    </pluginRepositories>
-    <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <name>Nexus Release Repository</name>
-            <url>http://192.168.1.117:9095/nexus/content/repositories/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <name>Nexus snapshots Repository</name>
-            <url>http://192.168.1.117:9095/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
     <modules>
         <module>dubbo-api</module>
         <module>dubbo-provider</module>

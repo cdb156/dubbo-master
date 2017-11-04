@@ -7,14 +7,18 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd 	
 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
     <!-- ========================= TRANSACTION DEFINITIONS ========================= -->
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:jdbc.properties" />
+    </bean>
 
 
     <!-- 配置数据源 使用的是Druid数据源 -->
     <bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
           init-method="init" destroy-method="close">
-        <property name="url" value="jdbc:mysql://192.168.1.117:3306/zhaojw_master"/>
-        <property name="username" value="fzg"/>
-        <property name="password" value="fzg123"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
         <!-- 初始化连接大小 -->
         <property name="initialSize" value="3"/>
         <!-- 连接池最大使用连接数量 -->
@@ -53,7 +57,6 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 
     <tx:annotation-driven transaction-manager="transactionManager"
                           proxy-target-class="true"/>
-
 
     <!-- MyBatis -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
